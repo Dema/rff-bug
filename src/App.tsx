@@ -1,24 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
+import {FieldRenderProps, Form, Field } from 'react-final-form'
 import './App.css';
+
+
+type InputProps = React.ComponentProps<"input"> &
+  FieldRenderProps<string, HTMLInputElement /* HTMLElement */>;
+
+
+const Input: React.FunctionComponent<InputProps> = ({
+  input,
+  meta,
+  ...rest
+}) => {
+  
+  return (
+    <>
+      {" "}
+      <input
+        
+        type="text"
+        {...input}
+        {...rest}
+      />
+      
+    </>
+  );
+};
+
+
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Form onSubmit={() => { }} render={() => {
+        return <Field component={Input} name="f"/>
+      }}/>
     </div>
   );
 }
